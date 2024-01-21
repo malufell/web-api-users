@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using WebApiChallenge.Exceptions;
 using WebApiChallenge.Models;
 using WebApiChallenge.Repository;
+using WebApiChallenge.Validations;
 
 namespace WebApiChallenge.Services.Implementations;
 
@@ -23,6 +24,11 @@ public class UserServiceImplementation(IUserRepository repository) : IUserServic
 
   public User Create(User user)
   {
+    if (!FederalTaxIdValidator.IsValid(user.FederalTaxId))
+    {
+      throw new ArgumentException("Federal Tax Id is invalid");
+    }
+
     try
     {
       return _repository.Create(user);
@@ -42,6 +48,11 @@ public class UserServiceImplementation(IUserRepository repository) : IUserServic
 
   public User Update(User user)
   {
+    if (!FederalTaxIdValidator.IsValid(user.FederalTaxId))
+    {
+      throw new ArgumentException("Federal Tax Id is invalid");
+    }
+
     var existingUser = _repository.FindByFederalTaxId(user.FederalTaxId);
     if (existingUser == null)
     {

@@ -41,6 +41,10 @@ public class UserController(IUserService userService) : Controller
     {
       return UnprocessableEntity("Federal Tax Id already exists");
     }
+    catch (ArgumentException ex)
+    {
+      return UnprocessableEntity(ex.Message);
+    }
   }
 
   [HttpPut]
@@ -55,6 +59,10 @@ public class UserController(IUserService userService) : Controller
     catch (NotFoundException)
     {
       return UnprocessableEntity("Federal Tax Id not found");
+    }
+    catch (ArgumentException ex)
+    {
+      return UnprocessableEntity(ex.Message);
     }
   }
 
