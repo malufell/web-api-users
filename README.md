@@ -64,4 +64,4 @@ Body example:
 }
 ```
 
-The `federalTaxId` is a unique data element, must be valid for registration, and editing is not allowed.
+The `federalTaxId` (CPF) is a unique data element, must be valid for registration, and editing is not allowed.
