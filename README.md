@@ -1,5 +1,7 @@
 ## REST API for User Registration
 
+The objective of this project was to learn the initial concepts of .NET and C#.
+
 ### Dependencies:
 
 - Evolve: Migration tool
